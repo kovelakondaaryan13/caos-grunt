@@ -2,42 +2,40 @@ import { FileSearch, Calculator, ShieldCheck, MessageSquare, FileText, Users } f
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const problems = [
-  { icon: FileSearch, title: "Manual Document Checking", desc: "Reading through unstructured client documents line by line" },
-  { icon: Calculator, title: "Ledger & GST Reconciliation", desc: "Matching entries across multiple data sources manually" },
-  { icon: ShieldCheck, title: "Compliance Verification", desc: "Cross-referencing regulatory requirements one by one" },
-  { icon: MessageSquare, title: "Client Document Chasing", desc: "Repeated follow-ups for missing or incomplete documents" },
-  { icon: FileText, title: "Working Paper Preparation", desc: "Building review-ready papers from scratch every engagement" },
-  { icon: Users, title: "High Associate Dependency", desc: "Senior time consumed reviewing junior preparation work" },
+  { icon: FileSearch, title: "Manual Document Checking" },
+  { icon: Calculator, title: "Ledger & GST Reconciliation" },
+  { icon: ShieldCheck, title: "Compliance Verification" },
+  { icon: MessageSquare, title: "Client Document Chasing" },
+  { icon: FileText, title: "Working Paper Preparation" },
+  { icon: Users, title: "High Associate Dependency" },
 ];
 
 const ProblemSection = () => {
   const { ref, isVisible } = useScrollAnimation();
 
   return (
-    <section id="problem" className="py-20 lg:py-28">
+    <section id="problem" className="py-24 lg:py-32 section-gradient">
       <div ref={ref} className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ${isVisible ? "animate-fade-in" : "opacity-0"}`}>
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            The Largest Hidden Bottleneck in CA Firms
+        <div className="text-center max-w-2xl mx-auto mb-20">
+          <span className="text-xs font-semibold uppercase tracking-widest text-primary/60 mb-3 block">The Problem</span>
+          <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
+            The Hidden Bottleneck in CA Firms
           </h2>
-          <p className="text-muted-foreground text-lg">
-            Six preparation challenges that consume the majority of engagement hours.
+          <p className="text-foreground/50 text-lg">
+            Preparation work limits scalability, increases cost, and delays advisory output.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {problems.map(({ icon: Icon, title, desc }) => (
-            <div key={title} className="p-6 rounded-lg border border-border bg-card hover:shadow-md transition-shadow">
-              <Icon className="h-6 w-6 text-primary mb-4" />
-              <h3 className="font-semibold text-foreground mb-2">{title}</h3>
-              <p className="text-sm text-muted-foreground">{desc}</p>
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-16 max-w-3xl mx-auto">
+          {problems.map(({ icon: Icon, title }, i) => (
+            <div key={title} className={`text-center space-y-3 animate-fade-in stagger-${i + 1}`} style={{ opacity: isVisible ? undefined : 0 }}>
+              <div className="flex items-center justify-center h-14 w-14 rounded-2xl bg-primary/5 mx-auto">
+                <Icon className="h-6 w-6 text-primary/70" />
+              </div>
+              <p className="text-sm font-medium text-foreground/70">{title}</p>
             </div>
           ))}
         </div>
-
-        <p className="text-center text-muted-foreground mt-12 max-w-2xl mx-auto">
-          Preparation work limits scalability, increases cost, and delays advisory output.
-        </p>
       </div>
     </section>
   );

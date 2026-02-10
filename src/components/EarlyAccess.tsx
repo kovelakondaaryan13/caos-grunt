@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { ArrowRight, CheckCircle } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const schema = z.object({
@@ -42,41 +42,44 @@ const EarlyAccess = () => {
   };
 
   return (
-    <section id="early-access" className="py-20 lg:py-28 bg-secondary">
+    <section id="early-access" className="py-24 lg:py-32">
       <div ref={ref} className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ${isVisible ? "animate-fade-in" : "opacity-0"}`}>
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-start">
           {/* Left */}
-          <div className="space-y-8">
+          <div className="space-y-10">
             <div>
-              <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-                Founding Firm Early Access
+              <span className="text-xs font-semibold uppercase tracking-widest text-primary/60 mb-3 block">Early Access</span>
+              <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
+                Founding Firm Access
               </h2>
-              <p className="text-muted-foreground text-lg">
-                We're selecting 150 firms from over 2,000 applicants for our founding cohort.
+              <p className="text-foreground/50 text-lg">
+                150 firms from 2,000+ applicants.
               </p>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-5">
               {[
                 "30-day free early access",
                 "Dedicated onboarding support",
                 "Workflow customization consultation",
                 "Direct product feedback channel",
               ].map((benefit) => (
-                <div key={benefit} className="flex items-center gap-3">
-                  <CheckCircle className="h-5 w-5 text-primary shrink-0" />
-                  <span className="text-foreground">{benefit}</span>
+                <div key={benefit} className="flex items-center gap-4">
+                  <div className="flex items-center justify-center h-6 w-6 rounded-full bg-primary/10">
+                    <Check className="h-3.5 w-3.5 text-primary" />
+                  </div>
+                  <span className="text-foreground/60">{benefit}</span>
                 </div>
               ))}
             </div>
 
-            <p className="text-sm text-muted-foreground border-l-2 border-primary/30 pl-4">
-              Applications are reviewed manually. Only qualified CA firms with active practice are selected.
+            <p className="text-sm text-foreground/30 italic">
+              Applications reviewed manually. Only qualified CA firms selected.
             </p>
           </div>
 
           {/* Right — Form */}
-          <div className="p-8 rounded-lg border border-border bg-card shadow-sm">
+          <div className="p-8 lg:p-10 rounded-2xl bg-card shadow-xl shadow-foreground/[0.03]">
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
                 <div className="grid sm:grid-cols-2 gap-4">
@@ -160,7 +163,7 @@ const EarlyAccess = () => {
                   )} />
                 </div>
 
-                <Button type="submit" size="lg" className="w-full">
+                <Button type="submit" size="lg" className="w-full rounded-full mt-2">
                   Apply for Early Access
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
