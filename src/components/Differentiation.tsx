@@ -1,4 +1,4 @@
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, X, Check } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Differentiation = () => {
@@ -16,8 +16,13 @@ const Differentiation = () => {
 
         <div className="grid md:grid-cols-2 gap-10 max-w-4xl mx-auto">
           {/* Old way */}
-          <div className="p-8 rounded-2xl bg-foreground/[0.02]">
-            <h3 className="text-foreground/30 mb-6 text-xs font-semibold uppercase tracking-widest">Traditional Tools</h3>
+          <div className="p-8 rounded-2xl bg-card shadow-md border border-border/30">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="h-7 w-7 rounded-full bg-destructive/10 flex items-center justify-center">
+                <X className="h-3.5 w-3.5 text-destructive" />
+              </div>
+              <h3 className="text-foreground/40 text-xs font-semibold uppercase tracking-widest">Traditional Tools</h3>
+            </div>
             <div className="flex items-center gap-3 flex-wrap">
               {["Upload", "Process", "Report"].map((s, i) => (
                 <div key={s} className="flex items-center gap-3">
@@ -30,8 +35,13 @@ const Differentiation = () => {
           </div>
 
           {/* CAOS way */}
-          <div className="p-8 rounded-2xl bg-primary/[0.03]">
-            <h3 className="text-primary/60 mb-6 text-xs font-semibold uppercase tracking-widest">CAOS Closed-Loop</h3>
+          <div className="p-8 rounded-2xl bg-card shadow-md border border-primary/10">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="h-7 w-7 rounded-full bg-primary/10 flex items-center justify-center">
+                <Check className="h-3.5 w-3.5 text-primary" />
+              </div>
+              <h3 className="text-primary/60 text-xs font-semibold uppercase tracking-widest">CAOS Closed-Loop</h3>
+            </div>
             <div className="flex items-center gap-2 flex-wrap">
               {["Detect", "Request", "Reprocess", "Reconcile", "Finalize"].map((s, i) => (
                 <div key={s} className="flex items-center gap-2">
