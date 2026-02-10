@@ -1,57 +1,62 @@
 
 
-# Hero Section Overhaul — Rich Visual Design
+# Complete CAOS Website Rebuild
 
-## Problem
-The Hero section (and by extension the whole site) is too plain and text-heavy. The reference images show a design pattern with:
-- Bold, large heading with an accent-colored keyword
-- A pill/badge tag above the heading
-- A rich visual element on the right side (not just text pills) — an interactive-looking card/mockup
-- Rounded, visually prominent CTA buttons with clear contrast
-- Overall feeling of depth through cards, shadows, and layered UI elements
+Scrapping the current multi-section layout and rebuilding from scratch to match the reference design language: bold centered headings with purple accent keywords, alternating two-column feature showcases with CSS mockup cards, clean testimonial grid, and FAQ grid.
 
-## What Changes
+## Site Structure (Top to Bottom)
 
-### Hero Section (primary focus)
-- Add a **pill badge** above the heading (e.g., "AI-Powered Workflows" with an icon, styled like the teal "HARMONY & TRUST" badge in the reference)
-- Make the H1 much bolder with an **accent-colored keyword**: "Automate the **Grunt Work.**" where "Grunt Work." is in primary color
-- Simplify the subtitle to one clean line
-- Style the **secondary CTA** as an outlined rounded-full button (like "Explore Spaces" in reference) instead of a plain ghost button
-- **Right column**: Replace the plain text pills with a **rich visual mockup card** — a simulated dashboard/app UI showing:
-  - A card with rounded corners and shadow showing a "CAOS Dashboard" preview
-  - Inside: a mini workflow status (document count, reconciliation progress bar, compliance check icon)
-  - A floating badge overlay (like "96% Accuracy" or "12 Docs Processed") to create depth
-  - This is all built with divs/CSS — no images needed
+1. **Navbar** -- Logo left, nav links center, dark "Join Early Access" CTA button right (rounded-full, bg-foreground)
+2. **Hero** -- Centered layout: small pill badge up top, massive bold heading "Automate the Grunt Work." with "Grunt Work." in primary purple, one-line subtitle, trust badges row (300+ Firms Analyzed | 15+ Partner Firms | ICAI Insights), single dark CTA button
+3. **How It Works** -- Section heading "How CAOS Works" with "CAOS" in purple. 3 alternating two-column feature blocks, each with a CSS mockup card on one side and icon + heading + description on the other:
+   - Block 1 (mockup right): "Unified Document Intake" -- CSS card showing a document list with checkboxes, bill numbers, vendor names
+   - Block 2 (mockup left): "Intelligent Reconciliation" -- CSS card showing invoice-ledger matching table with status badges  
+   - Block 3 (mockup right): "Closed-Loop Tracking" -- CSS card showing workflow pipeline with status indicators
+4. **Features Grid** -- Heading "Everything You Need" with "Need" in purple. 2x5 or 3-col grid of the 10 features, each as a clean card with icon, bold title, short description
+5. **Testimonials** -- Heading "Real Results, Real Success" with "Real Success" in purple. 3-column card grid with colored top border accent, quote text, author name + firm
+6. **FAQ** -- Heading "Frequently Asked Questions" with "Questions" in purple. 3-column grid layout (not accordion), bold question + answer text below
+7. **Early Access CTA** -- Full section with subtle lavender background, heading, form card
+8. **Footer** -- Clean minimal footer
 
-### Solution Section — Add a visual card on the right
-- Convert from centered timeline to a **two-column layout** (like reference image 3)
-- Left: heading + description + timeline steps
-- Right: A mockup card showing "Your Workflow" with 4 mini stat blocks (Documents, Reconciled, Flagged, Ready) similar to the "Your Ideal Match" card in reference image 3
-- Add a floating accent bar at the bottom of the card (like the teal "COMPATIBILITY 96%" bar)
+## Design System
 
-### Feature Grid — Add visual depth
-- Add subtle background fill to each card (not just on hover) — light `bg-card` with permanent soft shadow
-- This makes them feel like real cards, not floating text
+- **Headings**: text-5xl to text-7xl, font-black, tracking-tight
+- **Accent keyword**: text-primary (purple)
+- **Backgrounds**: Alternating between white and a subtle lavender (hsl primary at 3-5% opacity)
+- **Cards**: bg-white, rounded-2xl, border border-border/30, shadow-sm
+- **Mockup cards**: Larger rounded-2xl cards with shadow-xl, containing simulated UI elements (tables, checkboxes, progress bars, status badges)
+- **CTA buttons**: bg-foreground text-background (dark/black), rounded-full, px-8
 
-### Differentiation Section — Visual card treatment
-- Wrap each side in a proper card with shadow and slight background
-- Add a small visual indicator (a red X for traditional, green checkmark for CAOS) to make the comparison more visual
+## Files to Create/Modify
 
-### Early Access Section — Gradient background
-- Add a subtle gradient background to the entire section (light primary tint)
-- The form card already looks good with shadow
-
----
+| Action | File | Purpose |
+|--------|------|---------|
+| Rewrite | `src/pages/Index.tsx` | New section order |
+| Rewrite | `src/components/Navbar.tsx` | Centered links, dark CTA |
+| Rewrite | `src/components/Hero.tsx` | Centered hero, massive heading, trust row |
+| Create | `src/components/HowItWorks.tsx` | 3 alternating feature blocks with CSS mockups |
+| Rewrite | `src/components/FeatureGrid.tsx` | 10 features from content pack |
+| Rewrite | `src/components/Testimonials.tsx` | 6 reviews from content pack, 3-col grid |
+| Create | `src/components/FAQ.tsx` | 8 FAQs from content pack, grid layout |
+| Rewrite | `src/components/EarlyAccess.tsx` | Lavender bg CTA section |
+| Rewrite | `src/components/Footer.tsx` | Clean minimal |
+| Update | `src/index.css` | Add lavender section bg utility |
+| Delete (unused) | `SocialProof.tsx`, `ProblemSection.tsx`, `SolutionSection.tsx`, `Differentiation.tsx`, `CaseStudies.tsx`, `ValueOutcomes.tsx`, `Vision.tsx` | No longer needed |
 
 ## Technical Details
 
-### Files to modify:
-1. **`src/components/Hero.tsx`** — Complete redesign of right column with dashboard mockup card; add pill badge; style heading with accent color; update secondary CTA to outlined style
-2. **`src/components/SolutionSection.tsx`** — Two-column layout with visual card on right showing workflow stats
-3. **`src/components/FeatureGrid.tsx`** — Add permanent `bg-card shadow-md` to cards
-4. **`src/components/Differentiation.tsx`** — Add shadow to cards, visual indicators
-5. **`src/components/EarlyAccess.tsx`** — Add subtle gradient background to section
-6. **`src/index.css`** — Add a `.section-gradient-primary` utility for tinted section backgrounds
+### CSS Mockup Cards (HowItWorks)
+Built entirely with Tailwind divs -- no images. Each mockup simulates a product UI:
+- **Document Intake mockup**: A card with rows showing checkbox + bill number + vendor name, styled like a data table
+- **Reconciliation mockup**: A card with tab headers ("Needs Review" / "Accounting Ready"), search bar, table rows with To/From, Account, Amount, Status columns
+- **Tracking mockup**: A card showing workflow steps with colored status dots (Detected, Requested, Received, Processed, Finalized)
 
-### No external images or dependencies needed — all visuals built with Tailwind CSS divs, shadows, and gradients.
+### Alternating Layout Pattern
+Odd blocks: text left, mockup right. Even blocks: mockup left, text right. Each block has a small colored icon circle above the heading (like reference images).
+
+### Lavender Section Backgrounds
+Add `.section-lavender` utility: `background-color: hsl(var(--primary) / 0.04)` for alternating sections.
+
+### Content
+All copy comes directly from the user's content pack -- 10 features, 6 reviews, 8 FAQs, hero feature description. No invented content.
 
