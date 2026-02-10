@@ -52,7 +52,7 @@ const SolutionSection = () => {
             <div className="rounded-3xl bg-card shadow-2xl shadow-foreground/[0.06] border border-border/40 p-7 space-y-6 relative">
               <div className="flex items-center gap-3">
                 <div className="h-9 w-9 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <ClipboardCheck className="h-4.5 w-4.5 text-primary" />
+                  <ClipboardCheck className="h-[18px] w-[18px] text-primary" />
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-foreground">Your Workflow</p>

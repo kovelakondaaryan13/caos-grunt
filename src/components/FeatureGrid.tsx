@@ -34,7 +34,7 @@ const FeatureGrid = () => {
               style={{ opacity: isVisible ? undefined : 0 }}
             >
               <div className="flex items-center justify-center h-12 w-12 rounded-xl bg-primary/5 mb-5 group-hover:bg-primary/10 transition-colors">
-                <Icon className="h-5.5 w-5.5 text-primary/60 group-hover:text-primary/80 transition-colors" />
+                <Icon className="h-[22px] w-[22px] text-primary/60 group-hover:text-primary/80 transition-colors" />
               </div>
               <h3 className="font-semibold text-foreground mb-2 text-[15px]">{title}</h3>
               <p className="text-sm text-foreground/40 leading-relaxed">{desc}</p>
