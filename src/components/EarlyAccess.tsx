@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -6,8 +7,9 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const schema = z.object({
   firmName: z.string().trim().min(1, "Firm name is required").max(200),
@@ -24,6 +26,7 @@ type FormValues = z.infer<typeof schema>;
 const EarlyAccess = () => {
   const { ref, isVisible } = useScrollAnimation();
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),
@@ -33,12 +36,33 @@ const EarlyAccess = () => {
     },
   });
 
-  const onSubmit = (data: FormValues) => {
-    toast({
-      title: "Application Submitted",
-      description: "Thank you for applying. We'll review your application and be in touch shortly.",
-    });
-    form.reset();
+  const onSubmit = async (data: FormValues) => {
+    setIsSubmitting(true);
+    try {
+      const { error } = await supabase.from("early_access_submissions").insert({
+        firm_name: data.firmName,
+        partner_name: data.partnerName,
+        firm_size: data.firmSize,
+        practice_area: data.practiceArea,
+        client_volume: data.clientVolume,
+        email: data.email,
+        phone: data.phone,
+      });
+      if (error) throw error;
+      toast({
+        title: "Application Submitted",
+        description: "Thank you for applying. We'll review your application and be in touch shortly.",
+      });
+      form.reset();
+    } catch (err) {
+      toast({
+        title: "Submission Failed",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -126,9 +150,10 @@ const EarlyAccess = () => {
                     <FormItem><FormLabel>Phone</FormLabel><FormControl><Input type="tel" placeholder="+91 98765 43210" {...field} /></FormControl><FormMessage /></FormItem>
                   )} />
                 </div>
-                <Button type="submit" size="lg" className="w-full rounded-full mt-2 h-12 text-sm font-semibold bg-foreground text-background hover:bg-foreground/90">
-                  Apply for Early Access
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                <Button type="submit" size="lg" disabled={isSubmitting} className="w-full rounded-full mt-2 h-12 text-sm font-semibold bg-foreground text-background hover:bg-foreground/90">
+                  {isSubmitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+                  {isSubmitting ? "Submitting..." : "Apply for Early Access"}
+                  {!isSubmitting && <ArrowRight className="ml-2 h-4 w-4" />}
                 </Button>
               </form>
             </Form>
