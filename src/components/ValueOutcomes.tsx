@@ -1,45 +1,40 @@
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useCountUp } from "@/hooks/useCountUp";
 
-const AnimatedMetric = ({ value, label, isVisible, delay }: { value: string; label: string; isVisible: boolean; delay: number }) => {
-  const isNumeric = /^\d+/.test(value);
-  const numericTarget = isNumeric ? parseInt(value) : 0;
-  const suffix = isNumeric ? value.replace(/^\d+/, "") : "";
-  const animatedValue = useCountUp(numericTarget, isVisible);
-
-  return (
-    <div className="text-center" style={{ opacity: isVisible ? 1 : 0, transition: `opacity 0.5s ease ${delay}s, transform 0.5s ease ${delay}s`, transform: isVisible ? 'translateY(0)' : 'translateY(24px)' }}>
-      <p className="text-4xl sm:text-5xl font-bold text-primary mb-3">
-        {isNumeric ? `${animatedValue}${suffix}` : value}
-      </p>
-      <p className="text-sm text-foreground/40">{label}</p>
-    </div>
-  );
-};
-
-const outcomes = [
-  { value: "70%", label: "Less preparation time" },
-  { value: "Improved", label: "Accuracy & traceability" },
-  { value: "Reduced", label: "Associate dependency" },
-  { value: "Scalable", label: "Without extra manpower" },
-];
-
 const ValueOutcomes = () => {
   const { ref, isVisible } = useScrollAnimation();
+  const prepTime = useCountUp(70, isVisible);
 
   return (
-    <section className="py-24 lg:py-32 section-gradient section-dots">
+    <section className="py-28 lg:py-40">
       <div ref={ref} className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ${isVisible ? "animate-fade-in" : "opacity-0"}`}>
-        <div className="text-center max-w-2xl mx-auto mb-20">
-          <span className="text-xs font-semibold uppercase tracking-widest text-primary/60 mb-3 block">Impact</span>
-          <h2 className="text-3xl lg:text-4xl font-bold text-foreground">
+        <div className="text-center max-w-xl mx-auto mb-20">
+          <span className="text-xs font-semibold uppercase tracking-widest text-primary/50 mb-4 block">Impact</span>
+          <h2 className="text-3xl lg:text-5xl font-bold text-foreground tracking-tight">
             Measurable Impact
           </h2>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-          {outcomes.map(({ value, label }, i) => (
-            <AnimatedMetric key={label} value={value} label={label} isVisible={isVisible} delay={i * 0.1} />
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+          {[
+            { value: `${prepTime}%`, label: "Less preparation time", sublabel: "Across all engagement types" },
+            { value: "Improved", label: "Accuracy & traceability", sublabel: "End-to-end audit trail" },
+            { value: "Reduced", label: "Associate dependency", sublabel: "Scale without headcount" },
+            { value: "Scalable", label: "Without extra manpower", sublabel: "Handle 3× the volume" },
+          ].map(({ value, label, sublabel }, i) => (
+            <div
+              key={label}
+              className="text-center p-6 lg:p-8 rounded-3xl bg-card border border-border/30 shadow-sm"
+              style={{
+                opacity: isVisible ? 1 : 0,
+                transition: `opacity 0.6s ease ${i * 0.1}s, transform 0.6s ease ${i * 0.1}s`,
+                transform: isVisible ? 'translateY(0)' : 'translateY(24px)'
+              }}
+            >
+              <p className="text-4xl sm:text-5xl font-bold text-primary mb-3 tracking-tight">{value}</p>
+              <p className="text-sm font-medium text-foreground/60 mb-1">{label}</p>
+              <p className="text-xs text-foreground/30">{sublabel}</p>
+            </div>
           ))}
         </div>
       </div>

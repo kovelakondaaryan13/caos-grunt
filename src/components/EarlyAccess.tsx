@@ -42,18 +42,18 @@ const EarlyAccess = () => {
   };
 
   return (
-    <section id="early-access" className="py-24 lg:py-32 section-gradient">
+    <section id="early-access" className="py-28 lg:py-40 section-gradient">
       <div ref={ref} className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ${isVisible ? "animate-fade-in" : "opacity-0"}`}>
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-start">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           {/* Left */}
           <div className="space-y-10">
             <div>
-              <span className="text-xs font-semibold uppercase tracking-widest text-primary/60 mb-3 block">Early Access</span>
-              <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
+              <span className="text-xs font-semibold uppercase tracking-widest text-primary/50 mb-4 block">Early Access</span>
+              <h2 className="text-3xl lg:text-5xl font-bold text-foreground mb-5 tracking-tight">
                 Founding Firm Access
               </h2>
-              <p className="text-foreground/50 text-lg">
-                150 firms from 2,000+ applicants.
+              <p className="text-foreground/45 text-lg leading-relaxed">
+                150 firms selected from 2,000+ applicants. Apply to join the founding cohort.
               </p>
             </div>
 
@@ -68,18 +68,18 @@ const EarlyAccess = () => {
                   <div className="flex items-center justify-center h-6 w-6 rounded-full bg-primary/10">
                     <Check className="h-3.5 w-3.5 text-primary" />
                   </div>
-                  <span className="text-foreground/60">{benefit}</span>
+                  <span className="text-foreground/55 text-[15px]">{benefit}</span>
                 </div>
               ))}
             </div>
 
-            <p className="text-sm text-foreground/30 italic">
+            <p className="text-xs text-foreground/25 italic">
               Applications reviewed manually. Only qualified CA firms selected.
             </p>
           </div>
 
           {/* Right — Form */}
-          <div className="p-8 lg:p-10 rounded-2xl bg-card shadow-xl shadow-foreground/[0.03]">
+          <div className="p-8 lg:p-10 rounded-3xl bg-card shadow-2xl shadow-foreground/[0.06] border border-border/40">
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
                 <div className="grid sm:grid-cols-2 gap-4">
@@ -163,7 +163,7 @@ const EarlyAccess = () => {
                   )} />
                 </div>
 
-                <Button type="submit" size="lg" className="w-full rounded-full mt-2">
+                <Button type="submit" size="lg" className="w-full rounded-full mt-2 h-12 text-sm font-semibold shadow-md shadow-primary/20">
                   Apply for Early Access
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
