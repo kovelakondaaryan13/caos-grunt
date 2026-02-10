@@ -29,7 +29,7 @@ const Navbar = () => {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-background/80 backdrop-blur-xl border-b border-border shadow-sm"
+          ? "bg-background/80 backdrop-blur-xl border-b border-border/50 shadow-sm"
           : "bg-transparent"
       }`}
     >
@@ -47,13 +47,14 @@ const Navbar = () => {
               <button
                 key={link.href}
                 onClick={() => handleClick(link.href)}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                className="text-sm font-medium text-foreground/50 hover:text-foreground transition-colors"
               >
                 {link.label}
               </button>
             ))}
             <Button
               size="sm"
+              className="rounded-full"
               onClick={() => handleClick("#early-access")}
             >
               Join Early Access
@@ -70,19 +71,19 @@ const Navbar = () => {
       </div>
 
       {mobileOpen && (
-        <div className="md:hidden bg-background/95 backdrop-blur-xl border-b border-border">
+        <div className="md:hidden bg-background/95 backdrop-blur-xl border-b border-border/50">
           <div className="px-4 py-4 space-y-3">
             {navLinks.map((link) => (
               <button
                 key={link.href}
                 onClick={() => handleClick(link.href)}
-                className="block w-full text-left text-sm font-medium text-muted-foreground hover:text-foreground"
+                className="block w-full text-left text-sm font-medium text-foreground/60 hover:text-foreground"
               >
                 {link.label}
               </button>
             ))}
             <Button
-              className="w-full"
+              className="w-full rounded-full"
               size="sm"
               onClick={() => handleClick("#early-access")}
             >
