@@ -14,7 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      early_access_submissions: {
+        Row: {
+          client_volume: string
+          created_at: string
+          email: string
+          firm_name: string
+          firm_size: string
+          id: string
+          partner_name: string
+          phone: string
+          practice_area: string
+        }
+        Insert: {
+          client_volume: string
+          created_at?: string
+          email: string
+          firm_name: string
+          firm_size: string
+          id?: string
+          partner_name: string
+          phone: string
+          practice_area: string
+        }
+        Update: {
+          client_volume?: string
+          created_at?: string
+          email?: string
+          firm_name?: string
+          firm_size?: string
+          id?: string
+          partner_name?: string
+          phone?: string
+          practice_area?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
