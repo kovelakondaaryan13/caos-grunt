@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import caosLogo from "@/assets/CAOSlogo.png";
 
 const navLinks = [
   { label: "How It Works", href: "#how-it-works" },
@@ -36,9 +37,9 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           <button
             onClick={() => handleClick("#home")}
-            className="text-xl font-bold tracking-tight text-foreground"
+            className="flex items-center gap-2"
           >
-            CAOS
+            <img src={caosLogo} alt="CAOS India logo" className="h-8 w-auto" />
           </button>
 
           <div className="hidden md:flex items-center gap-8">
