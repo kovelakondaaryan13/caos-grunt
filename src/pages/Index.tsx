@@ -1,15 +1,10 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import SocialProof from "@/components/SocialProof";
-import ProblemSection from "@/components/ProblemSection";
-import SolutionSection from "@/components/SolutionSection";
+import HowItWorks from "@/components/HowItWorks";
 import FeatureGrid from "@/components/FeatureGrid";
-import Differentiation from "@/components/Differentiation";
-import CaseStudies from "@/components/CaseStudies";
 import Testimonials from "@/components/Testimonials";
-import ValueOutcomes from "@/components/ValueOutcomes";
+import FAQ from "@/components/FAQ";
 import EarlyAccess from "@/components/EarlyAccess";
-import Vision from "@/components/Vision";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -18,16 +13,11 @@ const Index = () => {
       <Navbar />
       <main>
         <Hero />
-        <SocialProof />
-        <ProblemSection />
-        <SolutionSection />
+        <HowItWorks />
         <FeatureGrid />
-        <Differentiation />
-        <CaseStudies />
         <Testimonials />
-        <ValueOutcomes />
+        <FAQ />
         <EarlyAccess />
-        <Vision />
       </main>
       <Footer />
     </div>

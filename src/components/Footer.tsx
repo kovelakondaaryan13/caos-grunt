@@ -1,5 +1,4 @@
 import { Mail } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const Footer = () => {
   const handleClick = (href: string) => {
@@ -7,53 +6,30 @@ const Footer = () => {
   };
 
   return (
-    <footer className="py-16 border-t border-border/20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10">
-          <div className="space-y-2">
+    <footer className="py-12 border-t border-border/20">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div>
             <span className="text-lg font-bold text-foreground tracking-tight">CAOS</span>
-            <p className="text-sm text-foreground/30">Chartered Accountant Operating System</p>
+            <p className="text-xs text-muted-foreground mt-1">Chartered Accountant Operating System</p>
           </div>
-
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-            <div className="flex items-center gap-8">
-              {[
-                { label: "Solution", href: "#solution" },
-                { label: "Features", href: "#features" },
-                { label: "Results", href: "#case-studies" },
-              ].map((link) => (
-                <button
-                  key={link.href}
-                  onClick={() => handleClick(link.href)}
-                  className="text-sm text-foreground/35 hover:text-foreground/60 transition-colors"
-                >
-                  {link.label}
-                </button>
-              ))}
-            </div>
-            <div className="flex items-center gap-4">
-              <a href="mailto:hello@caos.in" className="flex items-center gap-2 text-sm text-foreground/35 hover:text-foreground/60 transition-colors">
-                <Mail className="h-4 w-4" />
-                hello@caos.in
-              </a>
-              <Button
-                size="sm"
-                className="rounded-full shadow-sm shadow-primary/15"
-                onClick={() => handleClick("#early-access")}
-              >
-                Join Early Access
-              </Button>
-            </div>
+          <div className="flex items-center gap-6">
+            {[
+              { label: "Features", href: "#features" },
+              { label: "FAQ", href: "#faq" },
+              { label: "Contact", href: "#early-access" },
+            ].map((link) => (
+              <button key={link.href} onClick={() => handleClick(link.href)} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                {link.label}
+              </button>
+            ))}
+            <a href="mailto:hello@caos.in" className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
+              <Mail className="h-3.5 w-3.5" /> hello@caos.in
+            </a>
           </div>
         </div>
-
-        <div className="mt-14 pt-8 border-t border-border/15 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-foreground/20">
-            © {new Date().getFullYear()} CAOS. All rights reserved.
-          </p>
-          <p className="text-xs text-foreground/20">
-            Founding cohort limited · Applications reviewed manually
-          </p>
+        <div className="mt-10 pt-6 border-t border-border/15 text-center">
+          <p className="text-xs text-muted-foreground/50">© {new Date().getFullYear()} CAOS. All rights reserved.</p>
         </div>
       </div>
     </footer>

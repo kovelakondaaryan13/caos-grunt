@@ -132,4 +132,8 @@
   section[id] {
     scroll-margin-top: 5rem;
   }
+
+  .section-lavender {
+    background-color: hsl(var(--primary) / 0.04);
+  }
 }

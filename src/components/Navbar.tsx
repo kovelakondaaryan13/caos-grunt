@@ -3,11 +3,10 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#solution" },
-  { label: "Proof of Work", href: "#features" },
-  { label: "Case Studies", href: "#case-studies" },
-  { label: "Contact", href: "#early-access" },
+  { label: "How It Works", href: "#how-it-works" },
+  { label: "Features", href: "#features" },
+  { label: "Testimonials", href: "#testimonials" },
+  { label: "FAQ", href: "#faq" },
 ];
 
 const Navbar = () => {
@@ -33,7 +32,7 @@ const Navbar = () => {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <button
             onClick={() => handleClick("#home")}
@@ -52,9 +51,12 @@ const Navbar = () => {
                 {link.label}
               </button>
             ))}
+          </div>
+
+          <div className="hidden md:block">
             <Button
               size="sm"
-              className="rounded-full"
+              className="rounded-full bg-foreground text-background hover:bg-foreground/90 px-6"
               onClick={() => handleClick("#early-access")}
             >
               Join Early Access
@@ -83,7 +85,7 @@ const Navbar = () => {
               </button>
             ))}
             <Button
-              className="w-full rounded-full"
+              className="w-full rounded-full bg-foreground text-background hover:bg-foreground/90"
               size="sm"
               onClick={() => handleClick("#early-access")}
             >
