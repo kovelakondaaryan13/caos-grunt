@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronRight, Sparkles, FileText, GitCompare, ShieldCheck, CheckCircle2 } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
 
 const Hero = () => {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -14,15 +16,19 @@ const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
           {/* Left Column */}
           <div className="space-y-8">
-            <div className="space-y-5">
+            <div className="space-y-6">
+              <Badge variant="secondary" className="gap-2 px-4 py-1.5 text-xs font-semibold rounded-full border-border/50">
+                <Sparkles className="h-3.5 w-3.5 text-primary" />
+                AI-Powered Workflows
+              </Badge>
+
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-foreground leading-[1.05]">
-                CAOS
+                Automate the{" "}
+                <span className="text-primary">Grunt Work.</span>
               </h1>
-              <p className="text-lg sm:text-xl font-medium text-primary/80">
-                Chartered Accountant Operating System
-              </p>
-              <p className="text-xl sm:text-2xl text-foreground/70 leading-relaxed max-w-lg">
-                Eliminate grunt work. Improve accuracy. Reclaim professional time.
+
+              <p className="text-xl text-foreground/60 leading-relaxed max-w-lg">
+                Workflow infrastructure for Chartered Accountants — eliminate preparation overhead, improve accuracy, reclaim professional time.
               </p>
             </div>
 
@@ -36,9 +42,9 @@ const Hero = () => {
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
               <Button
-                variant="ghost"
+                variant="outline"
                 size="lg"
-                className="rounded-full text-foreground/60"
+                className="rounded-full px-8"
                 onClick={() => document.querySelector("#solution")?.scrollIntoView({ behavior: "smooth" })}
               >
                 See How It Works
@@ -51,46 +57,84 @@ const Hero = () => {
             </p>
           </div>
 
-          {/* Right Column — Before/After visual */}
-          <div className="hidden lg:flex flex-col gap-10">
-            {/* Before */}
-            <div className="space-y-4">
-              <span className="text-xs font-semibold uppercase tracking-widest text-foreground/30">
-                Traditional Workflow
-              </span>
-              <div className="flex items-center gap-3">
-                {["Client Docs", "Associates", "Excel", "Rechecks", "Delays"].map((step, i) => (
-                  <div key={step} className="flex items-center gap-3">
-                    <span className="px-4 py-2.5 rounded-full text-xs font-medium text-foreground/40 bg-foreground/5">
-                      {step}
-                    </span>
-                    {i < 4 && <ChevronRight className="h-3 w-3 text-foreground/15" />}
+          {/* Right Column — Dashboard Mockup Card */}
+          <div className="hidden lg:block relative">
+            {/* Main Card */}
+            <div className="rounded-2xl bg-card shadow-xl shadow-foreground/[0.04] border border-border/50 p-6 space-y-5">
+              {/* Card Header */}
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <Sparkles className="h-4 w-4 text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-foreground">CAOS Dashboard</p>
+                    <p className="text-xs text-foreground/40">Live workflow status</p>
+                  </div>
+                </div>
+                <Badge variant="secondary" className="text-[10px] px-2.5 py-0.5 rounded-full border-border/30">
+                  <span className="h-1.5 w-1.5 rounded-full bg-primary mr-1.5 inline-block" />
+                  Active
+                </Badge>
+              </div>
+
+              {/* Stats Row */}
+              <div className="grid grid-cols-3 gap-3">
+                <div className="rounded-xl bg-secondary/50 p-4 text-center space-y-1">
+                  <FileText className="h-4 w-4 text-primary/60 mx-auto" />
+                  <p className="text-2xl font-bold text-foreground">148</p>
+                  <p className="text-[10px] text-foreground/40 uppercase tracking-wider">Documents</p>
+                </div>
+                <div className="rounded-xl bg-secondary/50 p-4 text-center space-y-1">
+                  <GitCompare className="h-4 w-4 text-primary/60 mx-auto" />
+                  <p className="text-2xl font-bold text-foreground">96%</p>
+                  <p className="text-[10px] text-foreground/40 uppercase tracking-wider">Reconciled</p>
+                </div>
+                <div className="rounded-xl bg-secondary/50 p-4 text-center space-y-1">
+                  <ShieldCheck className="h-4 w-4 text-primary/60 mx-auto" />
+                  <p className="text-2xl font-bold text-foreground">3</p>
+                  <p className="text-[10px] text-foreground/40 uppercase tracking-wider">Flagged</p>
+                </div>
+              </div>
+
+              {/* Progress Section */}
+              <div className="space-y-3">
+                <div className="flex justify-between items-center">
+                  <p className="text-xs font-medium text-foreground/60">Reconciliation Progress</p>
+                  <p className="text-xs font-semibold text-primary">96%</p>
+                </div>
+                <Progress value={96} className="h-2" />
+              </div>
+
+              {/* Recent Activity */}
+              <div className="space-y-2.5">
+                <p className="text-xs font-medium text-foreground/40 uppercase tracking-wider">Recent Activity</p>
+                {[
+                  { label: "GST reconciliation completed", time: "2m ago" },
+                  { label: "Bank statement matched", time: "8m ago" },
+                  { label: "Compliance check passed", time: "15m ago" },
+                ].map((item) => (
+                  <div key={item.label} className="flex items-center justify-between py-1.5">
+                    <div className="flex items-center gap-2.5">
+                      <CheckCircle2 className="h-3.5 w-3.5 text-primary/50" />
+                      <span className="text-xs text-foreground/60">{item.label}</span>
+                    </div>
+                    <span className="text-[10px] text-foreground/30">{item.time}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="border-t border-dashed border-border/50" />
+            {/* Floating Badge — Top Right */}
+            <div className="absolute -top-3 -right-3 bg-primary text-primary-foreground rounded-xl px-4 py-2 shadow-lg shadow-primary/20">
+              <p className="text-xs font-bold">96% Accuracy</p>
+            </div>
 
-            {/* After */}
-            <div className="space-y-4">
-              <span className="text-xs font-semibold uppercase tracking-widest text-primary/60">
-                CAOS Workflow
-              </span>
-              <div className="flex items-center gap-3">
-                {["Client Docs", "CAOS", "Review Pack", "CA Decision"].map((step, i) => (
-                  <div key={step} className="flex items-center gap-3">
-                    <span className={`px-4 py-2.5 rounded-full text-xs font-medium ${
-                      step === "CAOS"
-                        ? "bg-primary/10 text-primary"
-                        : "bg-primary/5 text-foreground/70"
-                    }`}>
-                      {step}
-                    </span>
-                    {i < 3 && <ChevronRight className="h-3 w-3 text-primary/30" />}
-                  </div>
-                ))}
-              </div>
+            {/* Floating Badge — Bottom Left */}
+            <div className="absolute -bottom-3 -left-3 bg-card border border-border/50 rounded-xl px-4 py-2 shadow-lg">
+              <p className="text-xs font-semibold text-foreground">
+                <span className="text-primary">12</span> Docs Processed Today
+              </p>
             </div>
           </div>
         </div>

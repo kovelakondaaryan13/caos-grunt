@@ -42,7 +42,7 @@ const EarlyAccess = () => {
   };
 
   return (
-    <section id="early-access" className="py-24 lg:py-32">
+    <section id="early-access" className="py-24 lg:py-32 section-gradient">
       <div ref={ref} className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ${isVisible ? "animate-fade-in" : "opacity-0"}`}>
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-start">
           {/* Left */}

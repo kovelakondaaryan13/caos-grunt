@@ -27,7 +27,7 @@ const FeatureGrid = () => {
           {features.map(({ icon: Icon, title, desc }, i) => (
             <div
               key={title}
-              className={`group p-6 rounded-2xl hover:bg-card hover:shadow-lg transition-all duration-300 animate-fade-in stagger-${i + 1}`}
+              className={`group p-6 rounded-2xl bg-card shadow-md hover:shadow-lg transition-all duration-300 animate-fade-in stagger-${i + 1}`}
               style={{ opacity: isVisible ? undefined : 0 }}
             >
               <div className="flex items-center justify-center h-14 w-14 rounded-2xl bg-primary/5 mb-5 group-hover:bg-primary/10 transition-colors">
