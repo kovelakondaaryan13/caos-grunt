@@ -30,7 +30,7 @@ const ProblemSection = () => {
           {problems.map(({ icon: Icon, title, desc }, i) => (
             <div
               key={title}
-              className={`p-6 rounded-2xl bg-card/50 border border-border/30 hover:border-border/50 transition-all duration-300 animate-fade-in stagger-${i + 1}`}
+              className={`p-6 rounded-2xl bg-secondary/50 border border-border/30 hover:border-border/50 transition-all duration-300 animate-fade-in stagger-${i + 1}`}
               style={{ opacity: isVisible ? undefined : 0 }}
             >
               <div className="flex items-center justify-center h-11 w-11 rounded-xl bg-primary/5 mb-4">

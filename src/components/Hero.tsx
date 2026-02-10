@@ -64,7 +64,7 @@ const Hero = () => {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="h-9 w-9 rounded-xl bg-primary/10 flex items-center justify-center">
-                    <Sparkles className="h-4.5 w-4.5 text-primary" />
+                    <Sparkles className="h-[18px] w-[18px] text-primary" />
                   </div>
                   <div>
                     <p className="text-sm font-semibold text-foreground">CAOS Dashboard</p>
