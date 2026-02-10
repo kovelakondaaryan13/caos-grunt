@@ -122,4 +122,14 @@
   .section-gradient {
     background: radial-gradient(ellipse at 50% 0%, hsl(var(--primary) / 0.03) 0%, transparent 70%);
   }
+
+  .section-dots {
+    background-image:
+      radial-gradient(circle, hsl(var(--foreground) / 0.04) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
 }

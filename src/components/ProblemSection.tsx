@@ -14,7 +14,7 @@ const ProblemSection = () => {
   const { ref, isVisible } = useScrollAnimation();
 
   return (
-    <section id="problem" className="py-24 lg:py-32 section-gradient">
+    <section id="problem" className="py-24 lg:py-32 section-gradient section-dots">
       <div ref={ref} className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ${isVisible ? "animate-fade-in" : "opacity-0"}`}>
         <div className="text-center max-w-2xl mx-auto mb-20">
           <span className="text-xs font-semibold uppercase tracking-widest text-primary/60 mb-3 block">The Problem</span>
