@@ -1,72 +1,57 @@
 
 
-# Enhancements: Animated Counters, Background Textures, Testimonial Cards, and Button Routing Fix
+# Hero Section Overhaul — Rich Visual Design
 
-## 1. Animated Metric Counters (ValueOutcomes)
+## Problem
+The Hero section (and by extension the whole site) is too plain and text-heavy. The reference images show a design pattern with:
+- Bold, large heading with an accent-colored keyword
+- A pill/badge tag above the heading
+- A rich visual element on the right side (not just text pills) — an interactive-looking card/mockup
+- Rounded, visually prominent CTA buttons with clear contrast
+- Overall feeling of depth through cards, shadows, and layered UI elements
 
-Create a custom `useCountUp` hook that animates numbers from 0 to their target value when scrolled into view.
+## What Changes
 
-- "70%" will animate from 0 to 70 with a "%" suffix
-- "Improved", "Reduced", "Scalable" are text values -- these will fade in with a typewriter-like feel instead of counting
-- Animation duration: ~1.5 seconds with an ease-out curve
-- Triggered by the existing Intersection Observer visibility flag
+### Hero Section (primary focus)
+- Add a **pill badge** above the heading (e.g., "AI-Powered Workflows" with an icon, styled like the teal "HARMONY & TRUST" badge in the reference)
+- Make the H1 much bolder with an **accent-colored keyword**: "Automate the **Grunt Work.**" where "Grunt Work." is in primary color
+- Simplify the subtitle to one clean line
+- Style the **secondary CTA** as an outlined rounded-full button (like "Explore Spaces" in reference) instead of a plain ghost button
+- **Right column**: Replace the plain text pills with a **rich visual mockup card** — a simulated dashboard/app UI showing:
+  - A card with rounded corners and shadow showing a "CAOS Dashboard" preview
+  - Inside: a mini workflow status (document count, reconciliation progress bar, compliance check icon)
+  - A floating badge overlay (like "96% Accuracy" or "12 Docs Processed") to create depth
+  - This is all built with divs/CSS — no images needed
 
-**Files:** New hook `src/hooks/useCountUp.ts`, update `src/components/ValueOutcomes.tsx`
+### Solution Section — Add a visual card on the right
+- Convert from centered timeline to a **two-column layout** (like reference image 3)
+- Left: heading + description + timeline steps
+- Right: A mockup card showing "Your Workflow" with 4 mini stat blocks (Documents, Reconciled, Flagged, Ready) similar to the "Your Ideal Match" card in reference image 3
+- Add a floating accent bar at the bottom of the card (like the teal "COMPATIBILITY 96%" bar)
 
----
+### Feature Grid — Add visual depth
+- Add subtle background fill to each card (not just on hover) — light `bg-card` with permanent soft shadow
+- This makes them feel like real cards, not floating text
 
-## 2. Subtle Background Textures
+### Differentiation Section — Visual card treatment
+- Wrap each side in a proper card with shadow and slight background
+- Add a small visual indicator (a red X for traditional, green checkmark for CAOS) to make the comparison more visual
 
-Add a CSS-based dot grid pattern to alternating sections (using `radial-gradient` for tiny dots) and a subtle noise overlay using a CSS pattern. No external images needed.
-
-- `.section-gradient` gets an additional dot-grid overlay
-- New `.section-dots` utility class for sections that want the pattern
-- Applied to: ProblemSection, FeatureGrid, CaseStudies, and ValueOutcomes (the sections that already use `section-gradient`)
-
-**File:** `src/index.css`
-
----
-
-## 3. Testimonial Cards with Avatars
-
-Replace the single-quote carousel with a grid of 3 visible testimonial cards, each with:
-- A colored avatar circle with initials (no real photos needed)
-- The quote text
-- Author name and firm
-- Soft shadow, rounded-2xl, subtle hover lift
-
-Add 2 more testimonials (total 5), show 3 at a time on desktop, stack on mobile.
-
-**File:** `src/components/Testimonials.tsx`
-
----
-
-## 4. Button Routing Fix
-
-Current nav links map to these anchors:
-- Home -> `#home` (exists on Hero)
-- About -> `#solution` (exists on SolutionSection)
-- Proof of Work -> `#features` (exists on FeatureGrid)
-- Case Studies -> `#case-studies` (exists on CaseStudies)
-- Contact -> `#early-access` (exists on EarlyAccess)
-
-All section IDs are correctly set and the `handleClick` uses `scrollIntoView`. The issue is likely that `scrollIntoView` on the Hero section (`#home`) doesn't scroll because it's already at top, and the "See How It Works" button targets `#solution` which also exists.
-
-The actual fix: ensure the `scrollIntoView` calls account for the fixed navbar height (64px) by using `scroll-margin-top` on each section, so content isn't hidden behind the sticky nav.
-
-Additionally, the Footer's "Join Early Access" button and CaseStudies' "Apply for Early Access" button both target `#early-access` -- these are correct but also need the scroll margin fix.
-
-**Files:** `src/index.css` (add `scroll-margin-top` to sections), verify all section `id` attributes
+### Early Access Section — Gradient background
+- Add a subtle gradient background to the entire section (light primary tint)
+- The form card already looks good with shadow
 
 ---
 
-## Technical Summary
+## Technical Details
 
-| Change | Files |
-|---|---|
-| Count-up animation hook | New: `src/hooks/useCountUp.ts` |
-| Animated metrics | `src/components/ValueOutcomes.tsx` |
-| Background dot textures | `src/index.css` |
-| Testimonial cards with avatars | `src/components/Testimonials.tsx` |
-| Scroll-margin fix for nav | `src/index.css` |
+### Files to modify:
+1. **`src/components/Hero.tsx`** — Complete redesign of right column with dashboard mockup card; add pill badge; style heading with accent color; update secondary CTA to outlined style
+2. **`src/components/SolutionSection.tsx`** — Two-column layout with visual card on right showing workflow stats
+3. **`src/components/FeatureGrid.tsx`** — Add permanent `bg-card shadow-md` to cards
+4. **`src/components/Differentiation.tsx`** — Add shadow to cards, visual indicators
+5. **`src/components/EarlyAccess.tsx`** — Add subtle gradient background to section
+6. **`src/index.css`** — Add a `.section-gradient-primary` utility for tinted section backgrounds
+
+### No external images or dependencies needed — all visuals built with Tailwind CSS divs, shadows, and gradients.
 
